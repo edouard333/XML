@@ -24,7 +24,7 @@ public abstract class XML {
      * trouve pas.
      */
     @Null
-    public static NodeList getNodeListByName(@NotNull NodeList list, String name) {
+    protected static NodeList getNodeListByName(@NotNull NodeList list, String name) {
         for (int i = 0; i < list.getLength(); i++) {
             if (list.item(i).getNodeName().equals(name)) {
                 return ((Element) list.item(i)).getChildNodes();
@@ -95,7 +95,7 @@ public abstract class XML {
      * @return Le node sinon retourne {@code null} s'il ne trouve pas.
      */
     @Null
-    public static Node getNodeByName(@NotNull Node node, String name) {
+    protected static Node getNodeByName(@NotNull Node node, String name) {
         NodeList list = node.getChildNodes();
         for (int i = 0; i < list.getLength(); i++) {
             if (list.item(i).getNodeName().equals(name)) {
@@ -115,7 +115,7 @@ public abstract class XML {
      * @return La valeur.
      */
     @Null
-    public static String getNodeValueByName(@NotNull Node node, String name) {
+    protected static String getNodeValueByName(@NotNull Node node, String name) {
         Node child = getNodeByName(node, name);
         if (child != null) {
             return child.getTextContent();
