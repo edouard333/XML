@@ -48,7 +48,19 @@ public abstract class XML {
      * @param value Valeur du node.
      */
     protected static void addNode(@NotNull Document document, @NotBlank String name, String value) {
-        addNode(document, document.getDocumentElement(), name, value);
+        addNode(document, document.getDocumentElement(), name, value, null);
+    }
+
+    /**
+     * Ajoute un node à la racine avec une valeur.
+     *
+     * @param document Document.
+     * @param name Nom du node.
+     * @param value Valeur du node.
+     * @param commentaire Un commentaire avant le node sinon {@code null}.
+     */
+    protected static void addNode(@NotNull Document document, @NotBlank String name, String value, @Null String commentaire) {
+        addNode(document, document.getDocumentElement(), name, value, commentaire);
     }
 
     /**
@@ -60,6 +72,24 @@ public abstract class XML {
      * @param value Valeur du node.
      */
     protected static void addNode(@NotNull Document document, @NotNull Node node_parent, @NotBlank String name, String value) {
+        addNode(document, node_parent, name, value, null);
+    }
+
+    /**
+     * Ajoute un node avec une valeur.
+     *
+     * @param document Document.
+     * @param node_parent Le node parent où ajouter.
+     * @param name Nom du node.
+     * @param value Valeur du node.
+     * @param commentaire Un commentaire avant le node sinon {@code null}.
+     */
+    protected static void addNode(@NotNull Document document, @NotNull Node node_parent, @NotBlank String name, String value, @Null String commentaire) {
+        // Si on a un commentaire.
+        if (commentaire != null) {
+            node_parent.appendChild(document.createComment(commentaire));
+        }
+
         Element element = document.createElement(name);
         element.setTextContent(value);
         node_parent.appendChild(element);
