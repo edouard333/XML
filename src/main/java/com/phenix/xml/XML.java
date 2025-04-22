@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Null;
 import java.util.ArrayList;
+import java.util.List;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -16,6 +17,12 @@ import org.w3c.dom.NodeList;
  * @author <a href="mailto:edouard128@hotmail.com">Edouard Jeanjean</a>
  */
 public abstract class XML {
+
+    /**
+     *
+     */
+    public XML() {
+    }
 
     /**
      * Ajoute un node vide.
@@ -135,8 +142,8 @@ public abstract class XML {
      * @return Liste des nodes trouvé.
      */
     @NotNull
-    protected static ArrayList<Node> getChildNodeListByName(@NotNull Node node, String name) {
-        ArrayList<Node> liste_node = new ArrayList<Node>();
+    protected static List<Node> getChildNodeListByName(@NotNull Node node, String name) {
+        List<Node> liste_node = new ArrayList<Node>();
         NodeList list = node.getChildNodes();
 
         for (int i = 0; i < list.getLength(); i++) {
