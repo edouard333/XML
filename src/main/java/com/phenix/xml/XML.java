@@ -39,12 +39,12 @@ public abstract class XML {
      * Ajoute un node vide.
      *
      * @param document Document.
-     * @param node_parent Le node parent où ajouter.
+     * @param nodeParent Le node parent où ajouter.
      * @param name Nom du node.
      * @return Le node créé.
      */
-    protected static Node addNode(@NotNull Document document, @NotNull Node node_parent, @NotBlank String name) {
-        return node_parent.appendChild(document.createElement(name));
+    protected static Node addNode(@NotNull Document document, @NotNull Node nodeParent, @NotBlank String name) {
+        return nodeParent.appendChild(document.createElement(name));
     }
 
     /**
@@ -74,32 +74,32 @@ public abstract class XML {
      * Ajoute un node avec une valeur.
      *
      * @param document Document.
-     * @param node_parent Le node parent où ajouter.
+     * @param nodeParent Le node parent où ajouter.
      * @param name Nom du node.
      * @param value Valeur du node.
      */
-    protected static void addNode(@NotNull Document document, @NotNull Node node_parent, @NotBlank String name, String value) {
-        addNode(document, node_parent, name, value, null);
+    protected static void addNode(@NotNull Document document, @NotNull Node nodeParent, @NotBlank String name, String value) {
+        addNode(document, nodeParent, name, value, null);
     }
 
     /**
      * Ajoute un node avec une valeur.
      *
      * @param document Document.
-     * @param node_parent Le node parent où ajouter.
+     * @param nodeParent Le node parent où ajouter.
      * @param name Nom du node.
      * @param value Valeur du node.
      * @param commentaire Un commentaire avant le node sinon {@code null}.
      */
-    protected static void addNode(@NotNull Document document, @NotNull Node node_parent, @NotBlank String name, String value, @Null String commentaire) {
+    protected static void addNode(@NotNull Document document, @NotNull Node nodeParent, @NotBlank String name, String value, @Null String commentaire) {
         // Si on a un commentaire.
         if (commentaire != null) {
-            node_parent.appendChild(document.createComment(commentaire));
+            nodeParent.appendChild(document.createComment(commentaire));
         }
 
         Element element = document.createElement(name);
         element.setTextContent(value);
-        node_parent.appendChild(element);
+        nodeParent.appendChild(element);
     }
 
     /**
@@ -117,16 +117,16 @@ public abstract class XML {
      * Retourne un {@link Node} selon son nom dans un {@link Node} parent.
      *
      * @param node Le node où faire la recherche.
-     * @param nom_node Le nom du node.
+     * @param nomNode Le nom du node.
      * @return Le node recherché sinon {@code null}.
      */
     @Null
-    protected static Node getChildNodeByName(@NotNull Node node, String nom_node) {
-        NodeList liste_enfant = node.getChildNodes();
+    protected static Node getChildNodeByName(@NotNull Node node, String nomNode) {
+        NodeList listeEnfant = node.getChildNodes();
 
-        for (int i = 0; i < liste_enfant.getLength(); i++) {
-            if (liste_enfant.item(i).getNodeName().equals(nom_node)) {
-                return liste_enfant.item(i);
+        for (int i = 0; i < listeEnfant.getLength(); i++) {
+            if (listeEnfant.item(i).getNodeName().equals(nomNode)) {
+                return listeEnfant.item(i);
             }
         }
 
@@ -143,16 +143,16 @@ public abstract class XML {
      */
     @NotNull
     protected static List<Node> getChildNodeListByName(@NotNull Node node, String name) {
-        List<Node> liste_node = new ArrayList<Node>();
+        List<Node> listeNode = new ArrayList<Node>();
         NodeList list = node.getChildNodes();
 
         for (int i = 0; i < list.getLength(); i++) {
             if (list.item(i).getNodeName().equals(name)) {
-                liste_node.add(list.item(i));
+                listeNode.add(list.item(i));
             }
         }
 
-        return liste_node;
+        return listeNode;
     }
 
     /**
