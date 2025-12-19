@@ -125,8 +125,10 @@ public abstract class XML {
         NodeList listeEnfant = node.getChildNodes();
 
         for (int i = 0; i < listeEnfant.getLength(); i++) {
-            if (listeEnfant.item(i).getNodeName().equals(nomNode)) {
-                return listeEnfant.item(i);
+            Node nodeEnfant = listeEnfant.item(i);
+
+            if (nodeEnfant.getNodeName().equals(nomNode)) {
+                return nodeEnfant;
             }
         }
 
@@ -147,8 +149,10 @@ public abstract class XML {
         NodeList list = node.getChildNodes();
 
         for (int i = 0; i < list.getLength(); i++) {
-            if (list.item(i).getNodeName().equals(name)) {
-                listeNode.add(list.item(i));
+            Node nodeEnfant = list.item(i);
+
+            if (nodeEnfant.getNodeName().equals(name)) {
+                listeNode.add(nodeEnfant);
             }
         }
 
@@ -165,9 +169,12 @@ public abstract class XML {
     @Null
     protected static Node getNodeByName(@NotNull Node node, String name) {
         NodeList list = node.getChildNodes();
+
         for (int i = 0; i < list.getLength(); i++) {
-            if (list.item(i).getNodeName().equals(name)) {
-                return list.item(i);
+            Node node_ = list.item(i);
+
+            if (node_.getNodeName().equals(name)) {
+                return node_;
             }
         }
 
@@ -184,8 +191,10 @@ public abstract class XML {
     @Null
     protected static NodeList getNodeListByName(@NotNull NodeList list, String name) {
         for (int i = 0; i < list.getLength(); i++) {
-            if (list.item(i).getNodeName().equals(name)) {
-                return ((Element) list.item(i)).getChildNodes();
+            Node node = list.item(i);
+
+            if (node.getNodeName().equals(name)) {
+                return ((Element) node).getChildNodes();
             }
         }
 
